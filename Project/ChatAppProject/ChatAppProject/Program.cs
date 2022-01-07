@@ -18,7 +18,5 @@ namespace ChatAppProject
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ServerUI());
         }
-
-
     }
 }

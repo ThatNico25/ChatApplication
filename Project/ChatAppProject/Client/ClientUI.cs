@@ -47,18 +47,31 @@ namespace Client
             else
             {
                 client = new SimpleTcpClient();
-                client.Connect(txtHost.Text, Convert.ToInt32(txtPort.Text));
-
-                btnConnect.Enabled = false;
-                txtUsername.Enabled = false;
-                txtHost.Enabled = false;
-                txtPort.Enabled = false;
-                btnDisconnect.Enabled = true;
-                
-                client.StringEncoder = Encoding.UTF8;
-                client.DataReceived += Client_DataReceived;
-                m_IsServerConnected = client.TcpClient.Connected;
-                client.WriteLineAndGetReply(txtUsername.Text.Substring(0, txtUsername.Text.Length), TimeSpan.FromSeconds(1));
+                try
+                {
+                    client.Connect(txtHost.Text, Convert.ToInt32(txtPort.Text));
+                }
+                catch (Exception ex)
+                {
+                    txtStatus.Clear();
+                    txtStatus.Text += "Error : Can't connect to the server!~";
+                }
+                finally
+                {
+                    if(client.TcpClient.Connected)
+                    {
+                        txtStatus.Clear();
+                        btnConnect.Enabled = false;
+                        txtUsername.Enabled = false;
+                        txtHost.Enabled = false;
+                        txtPort.Enabled = false;
+                        btnDisconnect.Enabled = true;
+                        client.StringEncoder = Encoding.UTF8;
+                        client.DataReceived += Client_DataReceived;
+                        m_IsServerConnected = client.TcpClient.Connected;
+                        client.WriteLineAndGetReply(txtUsername.Text.Substring(0, txtUsername.Text.Length), TimeSpan.FromSeconds(1));
+                    }
+                }
             }
         }
 
@@ -114,7 +127,11 @@ namespace Client
                         {
                             txtStatus.Text += System.Environment.NewLine + list[list.Length - 2];
                         }
-                    }             
+                    }        
+                    if (message.Contains("You got disconnected because the server is closed!"))
+                    {
+                        Disconnect();
+                    }
                 });
             }
         }
@@ -124,14 +141,22 @@ namespace Client
         /// </summary>
         private void btnSend_Click(object sender, EventArgs e)
         {
-            client.WriteLineAndGetReply(txtUsername.Text + " : " + txtMessage.Text, TimeSpan.FromSeconds(0));
-            txtMessage.Clear();
+            if(m_IsServerConnected)
+            {
+                client.WriteLineAndGetReply(txtUsername.Text + " : " + txtMessage.Text, TimeSpan.FromSeconds(0));
+                txtMessage.Clear();
+            }
         }
 
         /// <summary>
         /// Disconnect from the current server connected.
         /// </summary>
         private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            Disconnect();
+        }
+
+        private void Disconnect()
         {
             client.WriteLineAndGetReply(txtUsername.Text.Substring(0, txtUsername.Text.Length), TimeSpan.FromSeconds(1));
             txtHost.Enabled = true;

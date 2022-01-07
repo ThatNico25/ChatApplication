@@ -95,6 +95,7 @@
             this.txtMessage.Location = new System.Drawing.Point(13, 370);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
+            this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMessage.Size = new System.Drawing.Size(565, 37);
             this.txtMessage.TabIndex = 10;
             // 
@@ -104,6 +105,7 @@
             this.txtStatus.Location = new System.Drawing.Point(12, 45);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtStatus.Size = new System.Drawing.Size(566, 319);
             this.txtStatus.TabIndex = 11;
             // 
@@ -141,6 +143,7 @@
             this.txtListUsername.Location = new System.Drawing.Point(587, 90);
             this.txtListUsername.Multiline = true;
             this.txtListUsername.Name = "txtListUsername";
+            this.txtListUsername.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtListUsername.Size = new System.Drawing.Size(117, 346);
             this.txtListUsername.TabIndex = 15;
             // 

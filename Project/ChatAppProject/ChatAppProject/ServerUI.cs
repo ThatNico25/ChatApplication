@@ -41,6 +41,7 @@ namespace ChatAppProject
         private void Form1_Load(object sender, EventArgs e)
         {
             server = new SimpleTcpServer();
+            btnDisconnect.Enabled = false;
             server.Delimiter = 0x13;
             server.StringEncoder = Encoding.UTF8;
             server.DataReceived += Server_DataReceived;
@@ -106,12 +107,25 @@ namespace ChatAppProject
         private void btnStart_Click(object sender, EventArgs e)
         {
             txtStatus.Text += "Server Starting..." + System.Environment.NewLine;
-            server.Start(IPAddress.Parse(txtHost.Text), Convert.ToInt32(txtPort.Text));
-            btnStart.Enabled = false;
-            btnDisconnect.Enabled = true;
-            txtHost.Enabled = false;
-            txtPort.Enabled = false;
-            txtStatus.Text += "Server is now open!..." + System.Environment.NewLine;
+            try
+            {
+                server.Start(IPAddress.Parse(txtHost.Text), Convert.ToInt32(txtPort.Text));
+            }
+            catch (Exception ex)
+            {
+                txtStatus.Text += "Error: " + ex.Message + System.Environment.NewLine;
+            }
+            finally
+            {
+                if (server.IsStarted)
+                {
+                    btnStart.Enabled = false;
+                    btnDisconnect.Enabled = true;
+                    txtHost.Enabled = false;
+                    txtPort.Enabled = false;
+                    txtStatus.Text += "Server is now open!..." + System.Environment.NewLine;
+                }
+            }
         }
 
         /// <summary>
@@ -129,6 +143,7 @@ namespace ChatAppProject
                 txtHost.Enabled = true;
                 txtPort.Enabled = true;
                 txtListUsername.Text = "";
+                server.BroadcastLine("You got disconnected because the server is closed!" + System.Environment.NewLine);
                 server.Stop();
                 txtStatus.Text += "Server is now close!" + System.Environment.NewLine;
             }

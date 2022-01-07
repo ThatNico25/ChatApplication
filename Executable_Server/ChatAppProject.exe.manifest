@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ChatAppProject.exe" size="12752">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ChatAppProject.exe" size="13776">
       <assemblyIdentity name="ChatAppProject" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bC74JZQROt3xZxKVFcuky1bDzcpeqCd3D2JkRrAweLw=</dsig:DigestValue>
+        <dsig:DigestValue>eH6zjWQp9+z8mMvvBRFO84aZ2+bz258eylRgk2eTdOk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -65,13 +65,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ChatAppProject.exe.config" size="187">
+  <file name="ChatAppProject.exe.config" size="182">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>+CM46OnHRrXZXNLMx7+U3V3iubiYL//d8hGOR13lDhU=</dsig:DigestValue>
+      <dsig:DigestValue>6yF81Kr/18DMcg6buS9ejUGZvWeN+ejf96BxgtNWgIE=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
