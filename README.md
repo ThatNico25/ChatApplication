@@ -7,7 +7,7 @@ Made by Nicolas Poulin
  **English**
   * It's a chat application made in c# using the SimpleTCP.
   * Programming language : C#
-  * Finish : 2021-01-06  
+  * Finished : 2021-01-06  
  
  **Français**
   * C'est une application pour chatter fait en c# en utilisant SimpleTCP. 
